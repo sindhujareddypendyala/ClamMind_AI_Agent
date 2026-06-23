@@ -56,6 +56,7 @@ def get_mood_logs(days: int = 30, x_user_id: Optional[str] = Header(None)):
     
     # Slice to the requested range for the display logs
     display_logs = all_logs[-days:] if len(all_logs) > days else all_logs
+    logs = display_logs
     
     if not all_logs:
         analytics = {
