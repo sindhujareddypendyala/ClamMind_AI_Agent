@@ -6,7 +6,7 @@ def get_context_memory(user_id, conversation_id=None, num_messages=5):
     wellness plans, and triggers to inject memory into the agent pipeline.
     """
     # 1. User profile
-    user = db.get_user()
+    user = db.get_user_by_id(user_id)
     if not user:
         return "User Profile: Not created yet."
 

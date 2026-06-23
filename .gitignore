@@ -94,3 +94,20 @@ yarn-error.log*
 *.tmp
 *.bak
 *.swp
+# Python
+__pycache__/
+*.pyc
+.env
+
+# Database
+*.db
+
+# Audio
+temp_audio/
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+
+# Build
+.dist/

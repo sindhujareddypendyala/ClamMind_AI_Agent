@@ -3,6 +3,12 @@ import sys
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+app = FastAPI(
+    title="CalmMind AI API",
+    version="1.0.0"
+)
+
+# API routes above this
 # Ensure the backend directory is in the Python path for relative imports
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 

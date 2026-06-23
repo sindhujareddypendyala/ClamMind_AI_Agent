@@ -1,12 +1,15 @@
 from services.gemini_service import call_gemini
 from prompts.templates import THERAPIST_PROMPT
 
-def generate_therapeutic_guidance(user_message, emotion):
+def generate_therapeutic_guidance(user_message, emotion, memory_context=""):
     """
-    Generates CBT-based advice and therapeutic strategy for the given message and emotion.
+    Generates CBT-based advice and therapeutic strategy for the given message, emotion, and memory context.
     """
     user_prompt = f"""User Message: {user_message}
 Detected Emotion: {emotion}
+
+User Memory Context:
+{memory_context}
 
 Please generate CBT validation, reframing, and stress-management guidance for this situation.
 """

@@ -31,10 +31,17 @@ def init_db():
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         user_id INTEGER NOT NULL,
         title TEXT NOT NULL,
+        pinned INTEGER DEFAULT 0,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
     )
     """)
+
+    # Attempt to add pinned column for existing DBs
+    try:
+        cursor.execute("ALTER TABLE conversations ADD COLUMN pinned INTEGER DEFAULT 0")
+    except sqlite3.OperationalError:
+        pass
 
     # Create Messages Table
     cursor.execute("""
@@ -60,10 +67,27 @@ def init_db():
         sleep_hours REAL NOT NULL,
         trigger TEXT,
         notes TEXT,
+        conversation_id INTEGER,
+        emotion TEXT,
+        wellness_score INTEGER,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
     )
     """)
+
+    # Attempt to alter table for existing databases
+    try:
+        cursor.execute("ALTER TABLE mood_logs ADD COLUMN conversation_id INTEGER")
+    except sqlite3.OperationalError:
+        pass
+    try:
+        cursor.execute("ALTER TABLE mood_logs ADD COLUMN emotion TEXT")
+    except sqlite3.OperationalError:
+        pass
+    try:
+        cursor.execute("ALTER TABLE mood_logs ADD COLUMN wellness_score INTEGER")
+    except sqlite3.OperationalError:
+        pass
 
     # Create Wellness Plans Table
     cursor.execute("""
@@ -100,6 +124,12 @@ def init_db():
 def get_user():
     conn = get_db_connection()
     user = conn.execute("SELECT * FROM users ORDER BY id ASC LIMIT 1").fetchone()
+    conn.close()
+    return dict(user) if user else None
+
+def get_user_by_id(user_id):
+    conn = get_db_connection()
+    user = conn.execute("SELECT * FROM users WHERE id = ?", (user_id,)).fetchone()
     conn.close()
     return dict(user) if user else None
 
@@ -205,6 +235,18 @@ def log_mood(user_id, mood, stress_level, anxiety_level, energy_level, sleep_hou
         INSERT INTO mood_logs (user_id, mood, stress_level, anxiety_level, energy_level, sleep_hours, trigger, notes)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?)
     """, (user_id, mood, stress_level, anxiety_level, energy_level, sleep_hours, trigger, notes))
+    log_id = cursor.lastrowid
+    conn.commit()
+    conn.close()
+    return log_id
+
+def log_auto_mood(user_id, conversation_id, emotion, wellness_score):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("""
+        INSERT INTO mood_logs (user_id, conversation_id, emotion, mood, wellness_score, stress_level, anxiety_level, energy_level, sleep_hours)
+        VALUES (?, ?, ?, ?, ?, 0, 0, 0, 0)
+    """, (user_id, conversation_id, emotion, emotion, wellness_score))
     log_id = cursor.lastrowid
     conn.commit()
     conn.close()
