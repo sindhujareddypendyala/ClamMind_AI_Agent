@@ -6,12 +6,15 @@ from groq import Groq
 
 load_dotenv()
 
-client = Groq(
-    api_key=os.getenv("GROQ_API_KEY")
-)
+client = None
 
-# Configure Groq API Key
-api_key = os.getenv("GROQ_API_KEY")
+def get_groq_client():
+    global client
+    if client is None:
+        api_key = os.getenv("GROQ_API_KEY")
+        if api_key:
+            client = Groq(api_key=api_key)
+    return client
 
 def get_chat_response(history, api_key=None):
     conversation = ""
@@ -44,8 +47,19 @@ Conversation:
 {conversation}
 """
 
+    cli = get_groq_client()
+    if not cli:
+        return {
+            "response": "Error: Groq API key is not configured. Please add GROQ_API_KEY to your env/Render settings.",
+            "mood": "💭 Reflective",
+            "stress_level": "Medium",
+            "confidence_score": 50,
+            "recommendations": [],
+            "affirmation": ""
+        }
+
     try:
-        completion = client.chat.completions.create(
+        completion = cli.chat.completions.create(
             model="llama-3.1-8b-instant",
             messages=[
                 {
@@ -116,8 +130,12 @@ Return ONLY JSON:
 }}
 """
 
+    cli = get_groq_client()
+    if not cli:
+        raise ValueError("Groq client not configured")
+
     try:
-        completion = client.chat.completions.create(
+        completion = cli.chat.completions.create(
             model="llama-3.1-8b-instant",
             messages=[
                 {

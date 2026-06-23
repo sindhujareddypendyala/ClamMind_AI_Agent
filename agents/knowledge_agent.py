@@ -1,7 +1,7 @@
 import os
 import json
 
-KB_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "knowledge_base", "mental_health.json")
+KB_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "backend", "knowledge_base", "mental_health.json")
 
 def get_wellness_guidance(emotion: str):
     """
