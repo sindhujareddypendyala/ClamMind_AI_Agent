@@ -7,6 +7,7 @@ from groq import Groq
 load_dotenv()
 
 client = None
+api_key = None
 
 def get_groq_client():
     global client
