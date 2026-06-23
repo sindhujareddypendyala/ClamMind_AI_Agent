@@ -44,12 +44,29 @@ def run_agent_pipeline(user_id, conversation_id, user_message):
     mood_context = get_mood_pipeline_context(user_id)
     
     # 6. Recommendations
-    recs = get_recommendations(emotion)
+    recs = get_recommendations(user_id, emotion)
     
-    # 7. Gemini Synthesis
+    # Heuristics check: Is user answering a short follow-up question?
+    import database.db_manager as db
+    is_follow_up = False
+    prev_question = ""
+    messages = db.get_conversation_messages(conversation_id)
+    if messages:
+        assistant_msgs = [m for m in messages if m['role'] == 'assistant']
+        if assistant_msgs:
+            last_assistant_msg = assistant_msgs[-1]['content']
+            if '?' in last_assistant_msg:
+                word_count = len(user_message.strip().split())
+                if word_count < 10:
+                    is_follow_up = True
+                    prev_question = last_assistant_msg
+    
+    # Assemble synthesis prompt
     user_prompt = f"""
 Current User Message: "{user_message}"
 Detected Emotion: {emotion}
+Is User Answering a Follow-Up Question: {"Yes" if is_follow_up else "No"}
+{f'Previous Assistant Question: "{prev_question}"' if is_follow_up else ""}
 
 Memory Context:
 {memory_context}
@@ -78,6 +95,18 @@ Please synthesize these inputs and write the final response to the user followin
             f"If you'd like, we can try a gentle {recs['breathing_exercise']} breathing exercise together. "
             "What's been weighing on your mind the most lately?"
         )
+
+    # Update active conversation state in the database
+    try:
+        from agents.state_tracker_agent import update_conversation_state
+        hist_str = ""
+        recent_msgs = messages[-4:] if len(messages) > 4 else messages
+        for msg in recent_msgs:
+            role = "User" if msg['role'] == "user" else "Companion"
+            hist_str += f"{role}: {msg['content']}\n"
+        update_conversation_state(conversation_id, user_message, hist_str)
+    except Exception as e:
+        print(f"Error updating state tracker: {e}")
 
     return {
         "content": final_response,

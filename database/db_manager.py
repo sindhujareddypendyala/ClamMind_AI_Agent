@@ -117,6 +117,18 @@ def init_db():
     )
     """)
 
+    # Create Conversation States Table
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS conversation_states (
+        conversation_id INTEGER PRIMARY KEY,
+        current_topic TEXT,
+        current_emotion TEXT,
+        conversation_stage INTEGER DEFAULT 1,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (conversation_id) REFERENCES conversations(id) ON DELETE CASCADE
+    )
+    """)
+
     conn.commit()
     conn.close()
 
@@ -374,3 +386,27 @@ def export_user_data(user_id):
     
     conn.close()
     return data
+
+def get_conversation_state(conversation_id):
+    conn = get_db_connection()
+    row = conn.execute("SELECT * FROM conversation_states WHERE conversation_id = ?", (conversation_id,)).fetchone()
+    conn.close()
+    return dict(row) if row else None
+
+def save_conversation_state(conversation_id, current_topic, current_emotion, conversation_stage):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    row = conn.execute("SELECT 1 FROM conversation_states WHERE conversation_id = ?", (conversation_id,)).fetchone()
+    if row:
+        cursor.execute("""
+            UPDATE conversation_states 
+            SET current_topic = ?, current_emotion = ?, conversation_stage = ?, updated_at = CURRENT_TIMESTAMP
+            WHERE conversation_id = ?
+        """, (current_topic, current_emotion, conversation_stage, conversation_id))
+    else:
+        cursor.execute("""
+            INSERT INTO conversation_states (conversation_id, current_topic, current_emotion, conversation_stage)
+            VALUES (?, ?, ?, ?)
+        """, (conversation_id, current_topic, current_emotion, conversation_stage))
+    conn.commit()
+    conn.close()

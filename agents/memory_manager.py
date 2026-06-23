@@ -61,6 +61,17 @@ def get_context_memory(user_id, conversation_id=None, num_messages=5):
     else:
         fav_str += "- No favorites saved yet.\n"
 
+    # 6. Active Conversation State
+    state_str = "Active Conversation State:\n"
+    if conversation_id:
+        state = db.get_conversation_state(conversation_id)
+        if state:
+            state_str += f"- Active Topic: {state.get('current_topic', 'general')}\n- Active Emotion: {state.get('current_emotion', 'neutral')}\n- Current Stage: {state.get('conversation_stage', 1)} / 5\n"
+        else:
+            state_str += "- Active Topic: general\n- Active Emotion: neutral\n- Current Stage: 1 / 5\n"
+    else:
+        state_str += "- No active conversation selected.\n"
+
     # Combine everything
     full_context = f"""--- USER MEMORY CONTEXT ---
 {user_info}
@@ -68,6 +79,7 @@ def get_context_memory(user_id, conversation_id=None, num_messages=5):
 {mood_str}
 {plans_str}
 {fav_str}
+{state_str}
 ---------------------------"""
     
     return full_context
