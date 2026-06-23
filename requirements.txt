@@ -1,0 +1,10 @@
+streamlit>=1.34.0
+requests
+SpeechRecognition
+gTTS
+plotly
+python-dotenv
+pandas
+fastapi
+uvicorn
+python-multipart

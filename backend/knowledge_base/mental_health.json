@@ -1,0 +1,82 @@
+{
+  "stress": {
+    "description": "Stress is a physiological and psychological response to demanding circumstances, raising cortisol and tension levels.",
+    "exercise": "16s Box Breathing: Inhale 4s, Hold 4s, Exhale 4s, Hold 4s.",
+    "affirmation": "I have the power to slow down, breathe, and tackle things one step at a time.",
+    "tips": [
+      "Prioritize your tasks and delegate where possible.",
+      "Take 5-minute offline screen breaks every hour.",
+      "Engage in brief physical stretching to release muscle tension."
+    ]
+  },
+  "anxiety": {
+    "description": "Anxiety is characterized by persistent worry, apprehension, and autonomic nervous system hyperactivity.",
+    "exercise": "5-4-3-2-1 Grounding: Name 5 things you see, 4 you feel, 3 you hear, 2 you smell, and 1 you taste.",
+    "affirmation": "I am safe in this present moment, and these anxious thoughts will pass.",
+    "tips": [
+      "Limit caffeine and refined sugar intake.",
+      "Focus on slow, deep abdominal breathing.",
+      "Acknowledge your anxiety without judging it or fighting it."
+    ]
+  },
+  "sadness": {
+    "description": "Sadness is a natural emotional reaction to loss, disappointment, or feeling overwhelmed.",
+    "exercise": "Gratitude Journaling: Recall and write down 3 small things that brought you comfort today.",
+    "affirmation": "It is okay to feel sad. I am gentle with myself as I heal.",
+    "tips": [
+      "Allow yourself to express emotions rather than bottling them up.",
+      "Connect with a supportive friend or write down your feelings.",
+      "Engage in a small, comforting self-care activity."
+    ]
+  },
+  "burnout": {
+    "description": "Burnout is a state of chronic physical and emotional exhaustion caused by prolonged work or life pressures.",
+    "exercise": "PMR (Progressive Muscle Relaxation): Squeeze and release muscle groups sequentially.",
+    "affirmation": "My worth is not defined by my productivity. I deserve rest.",
+    "tips": [
+      "Establish strict boundaries between work and rest hours.",
+      "Engage in non-work related hobbies or creative outlets.",
+      "Incorporate micro-rests into your daily schedule."
+    ]
+  },
+  "overthinking": {
+    "description": "Overthinking involves rumination, loop-thinking, and analyzing scenarios repeatedly, raising mental fatigue.",
+    "exercise": "Brain Dump: Write down every single thought on paper to release it from your mind.",
+    "affirmation": "I release the need to control the future and trust the process of life.",
+    "tips": [
+      "Set a designated 'worry time' of 10 minutes, then move on.",
+      "Distract your mind with physical activity or an engaging puzzle.",
+      "Remind yourself that thoughts are not facts."
+    ]
+  },
+  "sleep": {
+    "description": "Sleep issues involve difficulty falling asleep, staying asleep, or achieving restful, restorative sleep.",
+    "exercise": "4-7-8 Calm Breathing: Inhale 4s, Hold 7s, Exhale 8s.",
+    "affirmation": "My body is ready to rest, and my mind is letting go of the day.",
+    "tips": [
+      "Avoid digital screens at least 1 hour before bedtime.",
+      "Keep your bedroom cool, dark, and completely quiet.",
+      "Establish a consistent sleep schedule."
+    ]
+  },
+  "confidence": {
+    "description": "Low confidence stems from critical self-talk, negative self-judgment, or comparing oneself to others.",
+    "exercise": "Strengths Inventory: List 3 personal qualities or past challenges you successfully overcame.",
+    "affirmation": "I am competent, capable, and worthy of growth and success.",
+    "tips": [
+      "Catch and reframe self-deprecating thoughts immediately.",
+      "Celebrate small wins and accept compliments graciously.",
+      "Set small, achievable daily goals to build momentum."
+    ]
+  },
+  "motivation": {
+    "description": "Motivation issues occur due to lack of clarity, emotional exhaustion, or feeling overwhelmed by a task.",
+    "exercise": "The 5-Minute Rule: Commit to working on a task for just 5 minutes, then decide if you want to stop.",
+    "affirmation": "I don't need to do everything at once. I just need to take the first small step.",
+    "tips": [
+      "Break large goals into micro-tasks.",
+      "Identify the 'why' behind what you want to achieve.",
+      "Reward yourself for completing small tasks."
+    ]
+  }
+}

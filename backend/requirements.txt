@@ -1,0 +1,8 @@
+requests
+SpeechRecognition
+gTTS
+python-dotenv
+fastapi
+uvicorn
+python-multipart
+sqlite3

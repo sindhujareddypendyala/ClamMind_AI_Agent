@@ -1,0 +1,443 @@
+/* =========================================================================
+   CALMMIND AI - PREMIUM DESIGN SYSTEM
+   ========================================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,700&display=swap');
+
+/* --- 1. Reset & Global Variables --- */
+:root {
+    --bg-primary: #F7FAF5;
+    --text-main: #2F3E2E;
+    --text-muted: #7A8F75;
+    --primary-green: #2E8B57;
+    --primary-green-hover: #246B43;
+    --accent-green: #6B8E23;
+    --accent-green-hover: #55711C;
+    --white: #FFFFFF;
+    --border-light: #EBF0E4;
+    --border-dark: #DDE5D0;
+    --shadow-soft: 0 4px 20px rgba(46, 139, 87, 0.05);
+    --shadow-medium: 0 8px 30px rgba(46, 139, 87, 0.1);
+    --border-radius-lg: 24px;
+    --border-radius-md: 16px;
+    --border-radius-sm: 12px;
+    --font-sans: 'Inter', 'Outfit', sans-serif;
+    --font-serif: 'Playfair Display', serif;
+}
+
+/* Hide Streamlit default components */
+section[data-testid="stSidebarNav"] { display: none !important; }
+header[data-testid="stHeader"] { display: none !important; }
+#MainMenu { visibility: hidden !important; }
+footer { visibility: hidden !important; }
+
+/* Apply base container styling */
+.stApp {
+    background-color: var(--bg-primary) !important;
+    color: var(--text-main) !important;
+    font-family: var(--font-sans) !important;
+}
+
+.main .block-container {
+    max-width: 1200px !important;
+    padding-top: 2rem !important;
+    padding-bottom: 4rem !important;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif) !important;
+    color: var(--text-main) !important;
+    font-weight: 600 !important;
+}
+
+/* --- 2. Landing Page Layout --- */
+.landing-container {
+    padding: 2rem 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.hero-left {
+    padding-right: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+
+.hero-logo {
+    font-size: 64px;
+    margin-bottom: 1.5rem;
+    animation: pulse 3s infinite ease-in-out;
+}
+
+.hero-title {
+    font-size: 56px !important;
+    color: var(--primary-green) !important;
+    font-weight: 700 !important;
+    margin-bottom: 1rem !important;
+    line-height: 1.1 !important;
+}
+
+.hero-subtitle {
+    font-size: 24px !important;
+    color: var(--accent-green) !important;
+    font-family: var(--font-sans) !important;
+    font-weight: 400 !important;
+    margin-bottom: 1.5rem !important;
+}
+
+.hero-description {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text-main);
+    margin-bottom: 2.5rem;
+}
+
+/* Start Chat large CTA button styling */
+div[data-testid="stForm"] button,
+button[key="hero_start_chat_btn"] {
+    background-color: var(--primary-green) !important;
+    color: var(--white) !important;
+    border-radius: var(--border-radius-lg) !important;
+    padding: 14px 32px !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    box-shadow: 0 4px 15px rgba(46, 139, 87, 0.25) !important;
+    border: none !important;
+    transition: all 0.3s ease !important;
+}
+
+button[key="hero_start_chat_btn"]:hover {
+    background-color: var(--primary-green-hover) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(46, 139, 87, 0.35) !important;
+}
+
+/* Hero image wrapper */
+.hero-image-card {
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-medium);
+    border: 1px solid var(--border-light);
+    background: var(--white);
+    transition: transform 0.3s ease;
+}
+
+.hero-image-card:hover {
+    transform: translateY(-4px);
+}
+
+/* --- 3. Profile Onboarding Card --- */
+.onboarding-card {
+    background-color: var(--white);
+    border-radius: var(--border-radius-lg);
+    padding: 40px;
+    box-shadow: var(--shadow-medium);
+    border: 1px solid var(--border-light);
+    margin-top: 1rem;
+}
+
+.onboarding-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.onboarding-header h2 {
+    color: var(--primary-green) !important;
+    font-size: 32px !important;
+    margin-bottom: 0.5rem !important;
+}
+
+.onboarding-header p {
+    color: var(--text-muted);
+    font-size: 15px;
+}
+
+/* Forms styling */
+div[data-testid="stForm"] {
+    border: none !important;
+    padding: 0 !important;
+}
+
+.stTextInput>div>div>input,
+.stNumberInput>div>div>input {
+    border-radius: var(--border-radius-sm) !important;
+    border: 1px solid var(--border-dark) !important;
+    padding: 12px 16px !important;
+    font-size: 15px !important;
+    background-color: var(--white) !important;
+}
+
+.stTextInput>div>div>input:focus,
+.stNumberInput>div>div>input:focus {
+    border-color: var(--primary-green) !important;
+    box-shadow: 0 0 0 1px var(--primary-green) !important;
+}
+
+/* Onboarding continue button */
+.stFormSubmitButton button {
+    background-color: var(--primary-green) !important;
+    color: var(--white) !important;
+    border-radius: var(--border-radius-lg) !important;
+    padding: 12px 28px !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    width: 100% !important;
+    border: none !important;
+    box-shadow: 0 4px 15px rgba(46, 139, 87, 0.2) !important;
+    transition: all 0.3s ease !important;
+}
+
+.stFormSubmitButton button:hover {
+    background-color: var(--primary-green-hover) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 6px 18px rgba(46, 139, 87, 0.3) !important;
+}
+
+/* --- 4. Sidebar Styles (Dashboard Aesthetics) --- */
+section[data-testid="stSidebar"] {
+    background-color: #EBF0E4 !important;
+    border-right: 1px solid var(--border-dark);
+}
+
+.sidebar-header {
+    padding: 20px 10px 10px 10px;
+}
+
+.sidebar-divider {
+    border-top: 1px solid var(--border-dark);
+    margin: 15px 0;
+}
+
+.sidebar-section-title {
+    color: var(--text-muted);
+    font-size: 11px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin: 20px 10px 8px 10px;
+}
+
+.sidebar-history-category {
+    color: var(--text-main);
+    font-size: 12px;
+    font-weight: 600;
+    margin: 10px 10px 4px 10px;
+}
+
+/* Custom buttons inside the sidebar */
+section[data-testid="stSidebar"] .stButton > button {
+    background-color: transparent !important;
+    color: var(--text-main) !important;
+    border: none !important;
+    border-radius: var(--border-radius-sm) !important;
+    padding: 8px 14px !important;
+    font-size: 14px !important;
+    text-align: left !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    font-weight: 500 !important;
+    box-shadow: none !important;
+    transition: all 0.2s ease-in-out !important;
+    width: 100% !important;
+}
+
+section[data-testid="stSidebar"] .stButton > button:hover {
+    background-color: #DDE5D0 !important;
+    color: var(--primary-green) !important;
+}
+
+/* Active sidebar item (Primary type) */
+section[data-testid="stSidebar"] .stButton > button[kind="primary"] {
+    background-color: var(--primary-green) !important;
+    color: var(--white) !important;
+    font-weight: 600 !important;
+}
+
+section[data-testid="stSidebar"] .stButton > button[kind="primary"]:hover {
+    background-color: var(--primary-green-hover) !important;
+    color: var(--white) !important;
+}
+
+/* Sidebar Footer */
+.sidebar-footer {
+    border-top: 1px solid var(--border-dark);
+    padding-top: 15px;
+    margin-top: 40px;
+    text-align: center;
+    font-size: 11px;
+    color: var(--text-muted);
+    font-family: var(--font-sans);
+    line-height: 1.4;
+}
+
+/* --- 5. Chat Interface Layout (ChatGPT Aesthetics) --- */
+.chat-header {
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+}
+
+.chat-title {
+    font-size: 32px !important;
+    color: var(--primary-green) !important;
+    margin-bottom: 4px !important;
+}
+
+.chat-subtitle {
+    color: var(--text-muted);
+    font-size: 15px;
+    margin: 0;
+}
+
+.chat-divider {
+    border-top: 1px solid var(--border-light);
+    margin: 20px 0;
+}
+
+/* Chat bubble styling overrides */
+div[data-testid="stChatMessage"] {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 10px 0 !important;
+    width: 100% !important;
+}
+
+/* Hide default streamlit user avatar block but align messages */
+div[data-testid="stChatMessage"]:has(div[data-testid="chatAvatarIcon-user"]) {
+    justify-content: flex-end;
+}
+
+/* User Message bubble */
+div[data-testid="stChatMessage"]:has(div[data-testid="chatAvatarIcon-user"])>div:nth-child(2) {
+    background-color: #EBF0E4 !important;
+    margin-left: auto !important;
+    margin-right: 0 !important;
+    border-radius: 18px 18px 4px 18px !important;
+    padding: 14px 18px !important;
+    border: 1px solid var(--border-dark) !important;
+    box-shadow: none !important;
+    width: fit-content !important;
+    max-width: 75% !important;
+    color: var(--text-main) !important;
+}
+
+/* Assistant Message bubble */
+div[data-testid="stChatMessage"]:has(div[data-testid="chatAvatarIcon-assistant"])>div:nth-child(2) {
+    background-color: var(--white) !important;
+    margin-right: auto !important;
+    margin-left: 0 !important;
+    border-radius: 18px 18px 18px 4px !important;
+    padding: 14px 18px !important;
+    border: 1px solid var(--border-light) !important;
+    box-shadow: var(--shadow-soft) !important;
+    width: fit-content !important;
+    max-width: 75% !important;
+    color: var(--text-main) !important;
+}
+
+/* Chat Timestamp styling */
+.chat-timestamp {
+    text-align: right;
+    color: var(--text-muted);
+    font-size: 11px;
+    margin-top: 6px;
+}
+
+/* --- 6. Quick Support & Recommendations --- */
+.quick-action-btn button {
+    background-color: var(--white) !important;
+    color: var(--text-main) !important;
+    border: 1px solid var(--border-light) !important;
+    border-radius: var(--border-radius-sm) !important;
+    padding: 10px 14px !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    box-shadow: var(--shadow-soft) !important;
+    transition: all 0.2s ease !important;
+    width: 100% !important;
+    text-align: center !important;
+}
+
+.quick-action-btn button:hover {
+    border-color: var(--primary-green) !important;
+    background-color: var(--bg-primary) !important;
+    transform: translateY(-1px) !important;
+}
+
+.recommendation-pill button {
+    background-color: var(--white) !important;
+    color: var(--primary-green) !important;
+    border: 1px solid var(--border-dark) !important;
+    border-radius: 20px !important;
+    padding: 6px 14px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    box-shadow: var(--shadow-soft) !important;
+    transition: all 0.2s ease !important;
+}
+
+.recommendation-pill button:hover {
+    background-color: var(--bg-primary) !important;
+    border-color: var(--primary-green) !important;
+    transform: translateY(-1px) !important;
+}
+
+/* --- 7. Compact Voice & Chat Input --- */
+div[data-testid="stChatInput"] {
+    position: sticky;
+    bottom: 0;
+    background: var(--bg-primary) !important;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    z-index: 999;
+}
+
+div[data-testid="stChatInput"] textarea {
+    border-radius: 24px !important;
+    border: 1px solid var(--border-dark) !important;
+    background: var(--white) !important;
+}
+
+div[data-testid="stChatInput"] textarea:focus {
+    border-color: var(--primary-green) !important;
+}
+
+div[data-testid="stChatInput"] button {
+    border-radius: 50% !important;
+    background-color: var(--primary-green) !important;
+}
+
+/* st.audio_input customization inside column */
+div[data-testid="stAudioInput"] {
+    border: 1px solid var(--border-dark) !important;
+    border-radius: 24px !important;
+    background-color: var(--white) !important;
+    padding: 2px !important;
+    box-shadow: var(--shadow-soft) !important;
+    height: 48px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* Disclaimer text */
+.chat-disclaimer {
+    text-align: center;
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 15px;
+    line-height: 1.4;
+    border-top: 1px solid var(--border-light);
+    padding-top: 10px;
+}
+
+/* Animations */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
