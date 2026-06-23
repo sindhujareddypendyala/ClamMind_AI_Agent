@@ -257,6 +257,3 @@ Built as part of a GenAI Internship Project.
 
 ---
 
-## 📜 License
-
-This project is developed for educational and internship demonstration purposes.
