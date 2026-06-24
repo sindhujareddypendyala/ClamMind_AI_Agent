@@ -157,14 +157,8 @@ backend/
 
 ---
 
-## 🚀 Installation
+### Installation
 
-### Clone Repository
-
-```bash
-git clone https://github.com/YOUR_USERNAME/CalmMind-AI.git
-cd CalmMind-AI
-```
 
 ---
 
